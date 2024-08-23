@@ -1,0 +1,70 @@
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+  db:
+    image: postgres:16
+    container_name: db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: postgres
+  service-registry:
+    depends_on:
+      - movie-catalog
+    build:
+      context: ./service-registry
+      dockerfile: Dockerfile
+    container_name: service-registry
+    environment:
+      SERVER_PORT: 8761
+    ports:
+      - 8761:8761
+    restart: always
+  movie-catalog:
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 8090
+      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin:9411/api/v2/spans
+      EUREKA_INSTANCE_HOSTMANE: service-registry
+    build:
+      context: ./movie-catalog
+      dockerfile: Dockerfile
+    container_name: movie-catalog
+    ports:
+      - 8090:8090
+    restart: always
+  movie-info:
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 8091
+      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin:9411/api/v2/spans
+      EUREKA_INSTANCE_HOSTMANE: service-registry
+    build:
+      context: ./movie-info
+      dockerfile: Dockerfile
+    container_name: movie-info
+    ports:
+      - 8091:8091
+  api-gateway:
+    depends_on:
+      - movie-catalog
+      - movie-info
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    environment:
+      SERVER_PORT: 8080
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - 8080:8080

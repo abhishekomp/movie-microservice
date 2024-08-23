@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "46a638fc-ba94-4855-b0be-8cab63400783",
+		"name": "movie-microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14560701"
+	},
+	"item": [
+		{
+			"name": "addMovie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movieName\": \"Titanic\",\r\n    \"movieId\": \"MOV-01\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/movie-catalog-service/addMovie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"movie-catalog-service",
+						"addMovie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "apiGateway-addMovie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movieName\": \"Cold Ground\",\r\n    \"movieId\": \"MOV-02\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movie-catalog-service/addMovie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie-catalog-service",
+						"addMovie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addMovieInfo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movieName\": \"Titanic\",\r\n    \"movieId\": \"MOV-01\",\r\n    \"genre\": \"Adventure\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/movie-info-service/addMovieInfo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"movie-info-service",
+						"addMovieInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMovie",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/movie-catalog-service/getMovie/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"movie-catalog-service",
+						"getMovie",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMovieInfo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/movie-info-service/getMovieInfo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"movie-info-service",
+						"getMovieInfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMovieGenre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/movie-catalog-service/getGenre/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"movie-catalog-service",
+						"getGenre",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllMovies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/movie-catalog-service/getAllMovies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"movie-catalog-service",
+						"getAllMovies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "apiGateway-getAllMovies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movie-catalog-service/getAllMovies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie-catalog-service",
+						"getAllMovies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "apiGateway-getMovieInfo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movie-info-service/getMovieInfo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie-info-service",
+						"getMovieInfo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "apiGateway-getMovieGenre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movie-catalog-service/getGenre/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie-catalog-service",
+						"getGenre",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
